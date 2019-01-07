@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+  .box{
+    background-color: darkred;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+  }
+  </style>
+
+<script>
+
+  window.onload = function(){
+    const box = document.querySelector('body > div.box');
+    let pos_left = 0;
+    const pixelPerSec = 50;
+
+    //let startZeit = new Date().getTime();
+    // oder
+    //let datum = new Date();
+    //let startZeit = datum.getTime();
+    // oder
+    let startZeit = Date.now();
+
+    console.log(startZeit);
+
+    //console.log(startZeit.toLocalDateString());
+
+
+    //window.setInterval()
+    //setInterval(bewegeBox, 1);
+
+    //requestAnimationFrame(bewegeBox);
+    bewegeBox();
+
+    function bewegeBox(){
+
+      let jetzt = Date.now();
+      let secVergangen = (jetzt - startZeit)/1000;
+      startZeit = jetzt;
+
+      pos_left += pixelPerSec * secVergangen;
+      box.style.left = pos_left + 'px';
+      //box.style.width = pos_left + 'px';
+      requestAnimationFrame(bewegeBox);
+    }
+
+    const ausgabe = document.querySelector('body > div.timer');
+    const startZeitAbsolut = startZeit;
+
+    setInterval(updateTimer, 1000);
+
+    function updateTimer(){
+      let jetzt = Date.now();
+      let secVergangen = (jetzt - startZeitAbsolut)/1000;
+      ausgabe.textContent = secVergangen + ' sec';
+
+    }
+
+  }
+
+</script>
+</head>
+<body>
+<div class="box"></div>
+<div class="timer"></div>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Memory</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+        .memory {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr 1fr 1fr;
+          grid-gap: 1em;
+          padding: 1em;
+          width: 40em;
+          height: 40em;
+          border: 1px solid black;
+          background-color: darkkhaki;
+        }
+        .karte {
+          text-align: center;
+          font-size: xx-large;
+          border: 1px solid black;
+          padding-top: 40%;
+          background-color: olive;
+        }
+    </style>
+    <script src="js/helpers.js"></script>
+    <script>
+      'use strict';
+      document.addEventListener('DOMContentLoaded', function(){
+        const spalten = 4,
+              reihen = 4,
+              zahlen = [];
+
+        let karteAufgedeckt = null;
+        //Variable wird sich im Laufe des Programms nicht verändern
+        const spielRaster = document.createElement('div');
+        spielRaster.className = 'memory';
+        const spielEnde = document.createElement('div');
+        let spiel_start = false;
+        let spiel_reset = false;
+        let solved_counter = zahlen.length;
+
+        for(let i = 0; i < spalten * reihen; i+2){
+          neueZahlInListe();
+        }
+
+        function neueZahlInListe(){
+          let zahl = getZufallsGanzzahl(1,8);
+
+          // if yes --> return wert ist erster index der zahl, die im array vorkommt
+          if (zahlen.indexOf(zahl) === -1){
+            //zahlen.pushz(zahl);
+            //zahlen.pushz(zahl);
+
+            zahlen.push(zahl,zahl)
+            }else{
+              neueZahlInLIste();
+            }
+        }
+
+        console.log(zahlen);
+
+      document.getElementById('btn_start').onclick = erzeugeSpielfeld;
+
+      function erzeugeSpielfeld(){
+        for (let i = 0; i < spalten * reihen; i++){
+          let karte = document.createElement('div');
+          karte.className = 'karte';
+          karte.addEventListener('click', behandleKartenKlick);
+
+          let inhalt = document.createElement('span');
+          inhalt.style.display = 'none';
+          inhalt.textContent = zahlen[i];
+
+          karte.appendChild(inhalt);
+          spielRaster.appendChild(karte);
+        }
+      }
+        document.getElementById('spiel').appendChild(spielRaster);
+
+        document.getElementById('btn_reset').addEventListener('click',function(){
+          spiel_reset = true;
+        });
+
+        function behandleKartenKlick(ereignis){
+          const inhaltGeklickt = ereignis.currentTarget.firstElementChild;
+
+          if (spiel_reset === true){
+            inhalt.style.display = null;
+            inhalt.style.color = inhalt.style.color = 'black';
+            inhalt.style.display = inhalt.style.display = 'none';
+          }
+
+          if (inhaltGeklickt.style.display !== 'none')
+            return;
+
+          inhaltGeklickt.style.display = 'block';
+
+          if(karteAufgedeckt == null){
+            karteAufgedeckt = ereignis.currentTarget;
+            return;
+          }
+
+          //die 2. Karte wurde aufgedeckt...
+          const inhaltAufgedeckt = karteAufgedeckt.firstElementChild;
+
+          if(inhaltAufgedeckt.textContent === inhaltGeklickt.textContent){
+            inhaltAufgedeckt.style.color = inhaltGeklickt.style.color =  'darkgreen';
+            solved_counter -= 2;
+          } else {
+            inhaltAufgedeckt.style.color = inhaltGeklickt.style.color =  'firebrick';
+            setTimeout(function(inhalt1, inhalt2){
+              inhalt1.style.color = inhalt2.style.color = 'black';
+              inhalt1.style.display = inhalt2.style.display = 'none';
+            },1000, inhaltGeklickt, inhaltAufgedeckt);
+          }
+
+          karteAufgedeckt = null;
+
+          if (solved_counter === 0){
+            document.getElementById('spiel').appendChild(spielEnde);
+            spielEnde.innerHTML = 'Bravo! Du hast das Spiel gewonnen!';
+          }
+
+        }
+
+      });
+
+    </script>
+</head>
+<body>
+
+<h1>Zahlen Memory</h1>
+
+<div id="spiel">
+<button id="btn_start" type="button" name="button">Spiel starten</button>
+<button id="btn_reset" type="button" name="button">Reset</button>
+
+</div>
+
+</body>
+</html>
