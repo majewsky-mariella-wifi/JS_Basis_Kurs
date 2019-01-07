@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+    <script>
+    //damit egma5 standards eingehalten werden immer use strict verwenden
+    'use strict';
+    //Zuweisen eines EventListeners
+    window.addEventListener('load', fertigGeladen); // 2 Parameter - 1ster ist Ereignis auf das gewartet wird, 2ter ist auszuführende Funktion
+
+    function fertigGeladen() {
+    document.getElementById('ausgabe_1').innerHTML = foo + foo2;
+    }
+
+//----------------------------------------------------------------------------------------------------------------
+// Beispiel 1
+//----------------------------------------------------------------------------------------------------------------
+
+    var foo = 'Hello';
+    var foo2 = 'World!';
+    var foo3 = 12;
+
+/**
+    JavaScript DataTypes
+
+    typeof undefined // "undefined"
+    typeof 0 // "number"
+    typeof true // "boolean"
+    typeof "foo" // "string"
+    typeof Symbol("id") // "symbol"
+    typeof Math // "object"  (1)
+    typeof null // "object"  (2)
+    typeof alert // "function"  (3)
+**/
+
+    if (typeof (foo3) === 'undefined')
+      console.log("foo3 existiert nicht!");
+    else if ( foo3 === undefined )
+      console.log('foo3: ' + foo3);
+    else if (foo3 === 12)
+      console.log("Ist 12");
+    else if (foo3 >= 12)
+      console.log("Ist größer 12");
+
+
+//----------------------------------------------------------------------------------------------------------------
+// Beispiel 2
+//----------------------------------------------------------------------------------------------------------------
+    var x = 20;
+    y = 2 * x;
+
+    function tuWas() {
+      var htmlNode = document.getElementById('ausgabe_2');
+      htmlNode.innerText = 'y ist gleich ' + y;
+    }
+
+
+//----------------------------------------------------------------------------------------------------------------
+// Beispiel 3
+//----------------------------------------------------------------------------------------------------------------
+
+
+
+  </script>
+
+</head>
+
+<body>
+  	<p id="ausgabe_1"></p>
+
+    <p id="ausgabe_2"></p>
+
+    <button type="button" name="button" onclick="tuWas()">Zeige X</button>
+
+</body>
+
+</html>

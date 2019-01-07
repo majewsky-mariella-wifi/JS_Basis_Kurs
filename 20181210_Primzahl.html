@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+    <script>
+    'use strict';
+
+    window.onload = function(){
+
+      function checkPrimzahl(zahl) {
+        for ( var j = 2; j < zahl; j++ ) {
+          //falls ohne Rest teilbar, dann keine Primzahl
+          if( zahl % j === 0 ) {
+            return false;
+          }
+        }
+        //falls nach dem letzten Schleifendurchlauf noch kein break erfolgt ist
+        return true
+      }
+
+      document.getElementById('btn_eingabe').addEventListener('click',function(){
+
+        var benutzerEingabe = prompt('Geben Sie eine Zahl an');
+        // prompt liest zahl als string ein
+        benutzerEingabe *= 1;
+        //methode um string in integer zu verwandeln
+        //benutzEreingabe = paseInt(benutzerEingabe);
+
+        console.log(benutzerEingabe);
+
+        var element = document.getElementById('ausgabe');
+
+        if( isNaN(benutzerEingabe)) {
+          //TODO: show user feedback, no valid input
+          element.innerText = 'Geben Sie bitte eine gültige Zahl ein!';
+        } else {
+          //checkPrimzahl(benutzerEingabe);
+          element.innerText = benutzerEingabe + (checkPrimzahl(benutzerEingabe) ? ' ist eine Primzahl!' : ' ist leider keine Primzahl.');
+        }
+
+      });
+
+  } // Ende onload
+
+  </script>
+
+</head>
+
+<body>
+  <p id="ausgabe"></p>
+  <button id="btn_eingabe" type="button" name="button">Zahl testen</button>
+
+</body>
+
+</html>

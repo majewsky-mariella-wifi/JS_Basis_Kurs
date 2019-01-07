@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+<script>
+  'use strict'
+  window.onload = function(){
+  function geklickt(ereignis){
+    console.log("Geklickt, ausgelöst durch: " + ereignis.currentTarget);
+  }
+  document.getElementById('main').onclick = geklickt;
+  document.getElementById('child').onclick = geklickt;
+  document.getElementById('grandchild').onclick = geklickt;
+}
+
+</script>
+</head>
+<body>
+  <div id="main">
+    <p id="child">
+      <span id="grandchild">Grandchild</span>
+    </p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- script tag (kann sowohl im head als auch im body vorkommen)
+  <script type="text/javascript"> or <script>
+  -->
+  <script>
+
+  //Zuweisen eines EventListeners
+  window.addEventListener('load', fertigGeladen); // 2 Parameter - 1ster ist Ereignis auf das gewartet wird, 2ter ist auszuführende Funktion
+
+  function fertigGeladen() {
+    document.getElementById('ausgabe').innerHTML = foo + foo2;
+  }
+// das Schlüsselwort 'var' deklariert eine Variable
+// alphanumerische Zeichen erlaubt, kein Bindestirch, aber Unterstrich erlaubt
+// Datentypen in JavaScript = Lamda, String, Boolean, Object
+  var foo = 'Hello';
+  var foo2 = 'World!';
+  var foo3= '\n';
+
+  // alert( foo + ' ' + foo2 + foo3 + 'P A U S E !!!' );
+  //String > boolean = integer
+  var num1 = 'miau';
+  var num2 = 5;
+  var num3 = 5;
+  var booli = 1;
+  //console.log( num2 + num3 + num1);
+
+// '===' ist ein typ-spezifischer Vergleich
+  if(booli === 1){
+    console.log(booli);
+  }
+
+ document.getElementById('ausgabe').innerHTML = foo + foo2;
+  </script>
+
+</head>
+
+<body>
+<p id="ausgabe"></p>
+</body>
+
+</html>

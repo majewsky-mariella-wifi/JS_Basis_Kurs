@@ -1,0 +1,12 @@
+body{
+  font-family: sans-serif;
+}
+
+div{
+  padding: 1em;
+  border: 1px solid;
+}
+
+p{
+  display: inline-block;
+}
